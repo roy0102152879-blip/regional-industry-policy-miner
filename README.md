@@ -1,5 +1,9 @@
 # 区域产业政策挖掘器 / Regional Industry Policy Miner
 
+[![Agent Skills](https://img.shields.io/badge/Agent%20Skills-regional--industry--policy--miner-blueviolet)](SKILL.md)
+[![skills.sh](https://skills.sh/b/roy0102152879-blip/regional-industry-policy-miner)](https://skills.sh/roy0102152879-blip/regional-industry-policy-miner)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 一个用于解码中国地方产业政策信号的轻量研究框架。
 
 它帮助你回答一个很实际的问题：
@@ -42,7 +46,18 @@
 
 ## 快速开始
 
-公开工作流说明见 [`SKILL_PUBLIC.md`](SKILL_PUBLIC.md)。
+Agent runtime 标准入口见 [`SKILL.md`](SKILL.md)。公开工作流说明见
+[`SKILL_PUBLIC.md`](SKILL_PUBLIC.md)。
+
+```bash
+npx skills add roy0102152879-blip/regional-industry-policy-miner
+```
+
+装完后可以直接对 Agent 说：
+
+```text
+使用 regional-industry-policy-miner 扫描 [地区]，判断当地政府真正押注的产业，并区分政策押注、本地承载、商业闭环和下一步是否值得深挖。
+```
 
 如果你想做一个区域盲扫，可以这样提问：
 
@@ -83,12 +98,37 @@ Use regional-industry-policy-miner to scan [地区] and identify the industries 
 - 商业质量预检查：市场需求、盈利、周期、过剩、补贴依赖等初步风险
 - 反例和证据缺口：避免把普通宣传稿误判成强政策支持
 
+## 示例与测试
+
+简化案例见 [`examples/`](examples/)：
+
+- [`examples/jiaxing_simplified.md`](examples/jiaxing_simplified.md)：成熟制造业城市的区域盲扫。
+- [`examples/shaya_county_simplified.md`](examples/shaya_county_simplified.md)：县域资源型产业的区域盲扫。
+- [`examples/weinan_simplified.md`](examples/weinan_simplified.md)：快速扫描后形成 Mode A 深挖顺序。
+
+验收 prompt 见 [`test-prompts.json`](test-prompts.json)。它们覆盖：
+
+- 扫描渭南并给出深挖顺序；
+- 深挖西安光子产业，保留政策、企业、量化和风险层；
+- 判断莲湖区相关产业是有商业闭环，还是主要靠政府强推。
+
+## 安全边界
+
+- 不输出投资建议或股票推荐。
+- 不把政策热度等同于商业可行性。
+- 不用北大法宝/PKULaw 摘要替代原始政策全文。
+- 不为缺失金额、企业数量、产值或项目投资额编造数字。
+- 不把单条宣传稿、单家公司新闻或泛化营商环境材料当作强政策证据。
+- 如果证据不足，应该明确标注 `pending`、`amount not found` 或 `pending verification`。
+
 ## 仓库结构
 
 ```text
 .
 ├── README.md
+├── SKILL.md
 ├── SKILL_PUBLIC.md
+├── test-prompts.json
 ├── CITATION.md
 ├── LICENSE
 ├── docs/
@@ -96,7 +136,10 @@ Use regional-industry-policy-miner to scan [地区] and identify the industries 
 │   ├── framework.md
 │   └── source-priority.md
 └── examples/
-    └── jiaxing_simplified.md
+    ├── README.md
+    ├── jiaxing_simplified.md
+    ├── shaya_county_simplified.md
+    └── weinan_simplified.md
 ```
 
 ## English Summary

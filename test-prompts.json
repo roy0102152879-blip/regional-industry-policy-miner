@@ -1,0 +1,35 @@
+[
+  {
+    "id": "mode_b_weinan_quick_scan",
+    "mode": "regional_blind_scan",
+    "prompt": "Use regional-industry-policy-miner to scan 渭南. Identify the industries the local government is really betting on, separate policy bet / local carrying / commercial loop, and recommend the Mode A follow-up order.",
+    "expected_signals": [
+      "Produces a ranked candidate table rather than a flat industry list.",
+      "Separates new-energy power/equipment, equipment/additive manufacturing, new materials/modern chemicals, and specialty agriculture instead of merging them into generic labels.",
+      "Includes representative enterprises or project subjects for top industries when evidence is available.",
+      "States should_enter_mode_a or an equivalent follow-up order."
+    ]
+  },
+  {
+    "id": "mode_a_xian_photon_deep_dive",
+    "mode": "targeted_industry_deep_dive",
+    "prompt": "Use regional-industry-policy-miner to analyze 西安 + 光子产业. Keep the policy source library, support timeline, resource flow, enterprise mapping, quantitative layer, risks, and evidence gaps. Do not make the new version thinner than prior evidence.",
+    "expected_signals": [
+      "Uses Mode A rather than a generic regional scan.",
+      "Includes support timeline, resource flow, local advantage, cluster portrait, enterprise mapping, and quantitative layer.",
+      "Separates policy support from commercial-quality pre-check.",
+      "Preserves prior evidence density when iterating."
+    ]
+  },
+  {
+    "id": "mode_b_lianhu_government_forced_or_commercial_loop",
+    "mode": "regional_blind_scan",
+    "prompt": "Use regional-industry-policy-miner to judge whether 莲湖区's highlighted industries have a real commercial loop or are mainly government-forced cultivation. Keep the top decision table readable in Chinese Markdown.",
+    "expected_signals": [
+      "Uses compact Chinese headers such as 排名 / 候选产业 / 政策押注 / 本地承载 / 商业闭环 / 是否深挖.",
+      "Explains long rationale outside the table instead of stuffing table cells.",
+      "Frames commercial quality as 商业闭环 vs 政府强推, not a full investment rating.",
+      "Keeps policy bet strength, local carrying strength, and commercial-quality pre-check separate."
+    ]
+  }
+]
